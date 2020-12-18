@@ -1,8 +1,8 @@
-# プログラムでロボットを動かす
+# MoveIt!プログラミングの基礎
 
 <!-- TOC -->
 
-- [プログラムでロボットを動かす](#プログラムでロボットを動かす)
+- [MoveIt!プログラミングの基礎](#moveitプログラミングの基礎)
     - [プログラムを入力して実行する](#プログラムを入力して実行する)
             - [NEXTAGE OPEN の場合](#nextage-open-の場合)
         - [特定の関節を動かす](#特定の関節を動かす)
@@ -732,23 +732,36 @@ nextage_moveit_tutorial_poses.py で実行している内容は
 
 ### KHI duaro の場合
 
+<!-->
 **ターミナル-1**
 ```
 $ source /opt/ros/melodic/setup.bash
 $ roslaunch khi_duaro_gazebo duaro_world.launch
 ```
+-->
 
-**ターミナル-2**
+**ターミナル-1**
 ```
 $ source /opt/ros/melodic/setup.bash
-$ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch
+$ roslaunch khi_duaro_moveit_config demo.launch
 ```
+<!-- $ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch -->
 
 動作プログラムファイルを実行します．
 
-**ターミナル-3**
+**ターミナル-2**
 ```
-$ source /opt/ros/melodic/setup.bash
+$ mkdir -p ~/catkin_ws
+$ cd catkin_ws/src
+$ catkin create pkg my_tutorial
+$ cd my_tutorial
+$ mkdir script
+$ cat > duaro_moveit_tutorial_poses.py
+ここで、下の duaro_moveit_tutorial_poses.py をコピペ、Ctrl+Dで抜ける
+$ catkin build
+$ source ~/catkin_ws/devel/setup.bash
+$ rosrun my_tutorial duaro_moveit_tutorial_poses.py
+または
 $ rosrun tork_moveit_tutorial duaro_moveit_tutorial_poses.py
 ```
 
@@ -800,13 +813,13 @@ if __name__ == '__main__':
 
 ```
 
+このプログラムを書き換えて、いろいろ試してみましょう。
+
+
 他のロボットの動作計画・動作の実行ファイルとの相違点は次のとおりです．
 
 - `group = MoveGroupCommander()` に渡すグループ名を `"upper_arm"` に変更
 - ターゲットポーズの位置・姿勢を KHI duaro の機構に適したものに変更
-
-
-
 
 ### ROS や MoveIt! のメリット
 
@@ -822,6 +835,7 @@ KHI duAro を例にとり、ロボット制御をプログラムから行う方�
 
 このように「**ロボットが異なっても基本的には同じプログラムが動く**」ということが
 ROS や MoveIt! のインタフェースを使用する最大のメリットの1つであるといえます．
+
 
 
 <!-- EOF -->

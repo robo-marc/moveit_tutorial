@@ -21,13 +21,14 @@ NEDO ロボット活用型市場化適用技術開発プロジェクト (市場�
 ## この講習会資料で学べること
 
 - ROSの概要
-- ROS/MoveIt!の基本的な利用方法
-- MoveIt!による応用的な利用方法
-
+- ROS/MoveIt!の基本的な操作方法
+- MoveIt!による基本的なプログラミング方法
 
 ## 目次
 
+1. [ROS概要](ros_overview)
+<!-- 1. [ROSの基本](ros_basic) -->
 1. [NEDO ROSセット 基本設定](rosset_setting)
 1. [NEDO ROSセット シミュレータの利用](rosset_simulator)
-
+1. [MoveIt!プログラミングの基礎](program_basic)
 

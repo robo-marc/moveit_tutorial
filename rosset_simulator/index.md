@@ -33,6 +33,7 @@ NEDO ROSセットでは、必要なソフトウェアはすでにインストー
 [MoveIt! Tutorial](https://github.com/tork-a/tork_moveit_tutorial/releases/tag/0.0.10)
 を参照してください。
 
+<!--
 #### Gazebo シミュレータの起動
 
 1つ目のターミナルで次のコマンドを入力しして
@@ -40,7 +41,6 @@ NEXTAGE OPEN Gazebo シミュレータを起動します．
 
 **ターミナル-1** : Gazebo シミュレータの起動
 ```
-$ source /opt/ros/melodic/setup.bash
 $ roslaunch nextage_gazebo nextage_world.launch
 :
 :
@@ -52,167 +52,65 @@ log file: /home/robotuser/.ros/log/5d4ac8aa-baeb-11e7-af06-001c4284b313/go_initi
 Gazebo が起動して上記のターミナルの出力が得られたら Gazebo シミュレータ内の
 NEXTAGE OPEN ロボットの準備が完了しています．
 
-<$ifeq <$ROS_DISTRO>|indigo>
-
-![NEXTAGE - Gazebo Starts](images/nextage_gazebo-starts.png)
-
-<$endif>
-
-<$ifeq <$ROS_DISTRO>|kinetic>
-
-![NEXTAGE - Gazebo Starts](images/kinetic/nextage_gazebo-starts.png)
-
-<$endif>
-
-- 注意: 最初にgazeboを立ち上げる際にはモデルデータをダウンロードするために
-  以下のようにWarningやErrorが表示され数秒から数分の時間がかかる場合が有ります．
-  「[トラブルシューティング (Gazebo を起動してもロボットが表示されない)](moveit-tutorial_ja_trouble-shooting.md#gazebo-start-not-show-robot)」もご参照ください．
-
-![Gazebo Initial Error](images/gazebo_startup_error_small.png)
+<div align="center">
+<img src="figs/nextage_gazebo-starts.png"/>
+</div>
+<div style="text-align: center;">NEXTAGE - Gazebo 起動画面</div>
 
 #### MoveIt! の起動
 
-2つ目のターミナルで次のコマンドを入力して MoveIt! を起動します．
+もう一つ端末を起動して、次のコマンドを入力して MoveIt! を起動します．
 
 **ターミナル-2** : MoveIt! の起動
 ```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
+$ roslaunch nextage_moveit_config demo.launch
 $ roslaunch nextage_moveit_config moveit_planning_execution.launch
 ```
-<$ifeq <$ROS_DISTRO>|indigo>
 
-![NEXTAGE - MoveIt! Starts](images/nextage_moveit-starts.png)
-
-<$endif>
-
-<$ifeq <$ROS_DISTRO>|kinetic>
-
-![NEXTAGE - MoveIt! Starts](images/kinetic/nextage_moveit-starts.png)
-
-<$endif>
+<div align="center">
+<img src="figs/nextage_moveit-starts.png"/>
+</div>
+<div style="text-align: center;">NEXTAGE - MoveIt! 起動画面</div>
 
 これで MoveIt! の動作計画機能が利用できる状態になっています．
+
+ここで、roslaunch について、確認しておきます。roslaunchコマンドは、
+
+```
+$ roslaunch <パッケージ名> <launchファイル名>
+```
+
+となっており、上では、
+
+- パッケージ: nextage_moveit_config
+- launchファイル: moveit_planning_execution.launch
+
+が指定されています。これらの場所は、以下の通りです。
+
+```
+$ rospack find nextage_moveit_config
+/opt/ros/melodic/share/nextage_moveit_config
+```
+rospack は ROS のパッケージ関連の操作や情報を表示するコマンドです。
+つまり、このパッケージは /opt/ros/melodic/share/nextage_moveit_config に存在するということになります。
+
+次に、rosls コマンドでこのパッケージの中身を見てみます。
+
+```
+$ rosls nextage_moveit_config
+cmake  config  launch  package.xml   test
+$ rosls nextage_moveit_config/launch/moveit_planning*
+/opt/ros/melodic/share/nextage_moveit_config/moveit_planning_execution.launch
+```
+
+このように、指定されたパッケージの中のファイルを見ることができます。
+この例では、moveit_planning_execution.launch ファイルが、/opt/ros/melodic/share/nextage_moveit_config/ の中にあることが確認できました。
 
 #### シミュレータの終了
 
 シミュレータを終了するには各ターミナルで Ctrl-C を入力してください．
 
-
-<$ifeq <$ROS_DISTRO>|indigo>
-
-### Baxter Research Robot - Gazebo シミュレータ
-
-#### Gazebo シミュレータの起動
-
-ターミナルを3つ開きます．
-
-**ターミナル-1** : Baxter シミュレータの起動
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
-$ roslaunch baxter_gazebo baxter_world.launch  
-```
-
-![Baxter Simulator - Starts](images/baxter-simulator_starts.png)
-
-しばらくすると次のようなメッセージが **ターミナル-1** に表示されます．
-
-```
-[ INFO] [1509004453.402952141, 10.130000000]: Simulator is loaded and started successfully
-[ INFO] [1509004453.462744480, 10.140000000]: Robot is disabled
-[ INFO] [1509004453.462870807, 10.140000000]: Gravity compensation was turned off
-```
-
-これで Gazebo シミュレータの準備は終了です．
-
-#### ロボットの準備
-
-次にロボットを MoveIt! から操作可能な状態にします．
-2つ目のターミナル上で次のコマンドを実行してください．
-
-**ターミナル-2** : ロボットの準備
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
-$ rosrun baxter_tools enable_robot.py -e
-
-[INFO] [WallTime: 1509004993.657452] [192.385000] Robot Enabled
-
-$ rosrun baxter_tools tuck_arms.py -u
-
-[INFO] [WallTime: 1509005020.475291] [0.000000] Untucking arms
-[INFO] [WallTime: 1509005020.910480] [202.807000] Moving head to neutral position
-[INFO] [WallTime: 1509005020.911446] [202.808000] Untucking: Arms already Untucked; Moving to neutral position.
-[INFO] [WallTime: 1509005024.476011] [204.036000] Finished tuck
-
-$ rosrun baxter_interface joint_trajectory_action_server.py
-
-Initializing node...
-Initializing joint trajectory action server...
-Running. Ctrl-c to quit
-```
-
-![Baxter Simulator - Ready for MoveIt!](images/baxter-simulator_ready-for-moveit.png)
-
-これでロボットの準備は終了です．
-
-#### MoveIt! の起動
-
-3つ目のターミナルで次のコマンドを実行して MoveIt! を起動します．
-
-**ターミナル-3** : MoveIt! の起動
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
-$ roslaunch baxter_moveit_config baxter_grippers.launch
-```
-
-![Baxter MoveIt! - Starts](images/baxter-moveIt_starts.png)
-
-これで MoveIt! の動作計画機能が利用できる状態になっています．
-
-
-#### シミュレータの終了
-
-シミュレータでの作業が終わりましたら
-全てのターミナルで Ctrl-C を入力することでシミュレータを終了します．
-
-<$endif>
-
-
-### MINAS TRA1 - MoveIt! シミュレータ
-
-ターミナルを2つ起動します．
-
-1つ目のターミナルでコントローラをシミュレーションモードで起動します．
-
-**ターミナル-1**
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
-$ roslaunch tra1_bringup tra1_bringup.launch simulation:=true
-```
-
-2つ目のターミナルで MoveIt! を起動します．
-
-**ターミナル-2**
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
-$ roslaunch tra1_bringup tra1_moveit.launch
-```
-
-<$ifeq <$ROS_DISTRO>|indigo>
-
-![MINAS TRA1 - MoveIt! Starts](images/minas-tra1_moveit_starts.png)
-
-<$endif>
-
-<$ifeq <$ROS_DISTRO>|kinetic>
-
-![MINAS TRA1 - MoveIt! Starts](images/kinetic/minas-tra1_moveit_starts.png)
-
-<$endif>
-
-シミュレータを終了するには各ターミナルで Ctrl-C を入力してください．
-
-
-<$ifeq <$ROS_DISTRO>|kinetic>
+-->
 
 ### KHI duaro - Gazebo シミュレータ
 
@@ -222,9 +120,14 @@ $ roslaunch tra1_bringup tra1_moveit.launch
 
 **ターミナル-1** : KHI duaro Gazebo シミュレータの起動
 ```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
+$ source /opt/ros/melodic/setup.bash
 $ roslaunch khi_duaro_gazebo duaro_world.launch  
 ```
+
+<div align="center">
+<img src="figs/duaro-simulator_starts.png"/>
+</div>
+<div style="text-align: center;">duAro - MoveIt! 起動画面</div>
 
 ![duaro Simulator - Starts](images/kinetic/duaro-simulator_starts.png)
 
@@ -245,7 +148,9 @@ log file: /home/robotuser/.ros/log/f5391a42-7168-11e9-931c-1c1bb5f26084/go_initi
 
 **ターミナル-2** : MoveIt! の起動
 ```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
+$ source /opt/ros/melodic/setup.bash
+$ roslaunch khi_duaro_moveit_config demo.launch
+または
 $ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch
 ```
 
@@ -283,17 +188,10 @@ MoveIt! が動作計画を行い，シミュレータのロボットが動作し
 
 動作計画だけを行いたい場合は `Plan` ボタンをクリックします．
 
-<$ifeq <$ROS_DISTRO>|indigo>
-
-![MoveIt! - RViz Plan and Execute](images/nextage_moveit_plan-execute.png)
-
-<$endif>
-
-<$ifeq <$ROS_DISTRO>|kinetic>
-
-![MoveIt! - RViz Plan and Execute](images/kinetic/nextage_moveit_plan-execute.png)
-
-<$endif>
+<div align="center">
+<img src="figs/duaro_moveit_plan-execute.png"/>
+</div>
+<div style="text-align: center;">duAro - MoveIt! Plan/Execute</div>
 
 このように MoveIt! の GUI 上で
 InteractiveMarker を動かして目標値を設定し，動作計画を行い実行する

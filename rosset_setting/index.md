@@ -83,7 +83,7 @@ $ source /opt/ros/melodic/setup.bash
 ターミナル起動時に setup.bash を自動で実行し ROS 環境になるようにしておくと便利です．
 
 ```
-$ echo "source /opt/ros/<$ROS_DISTRO>/setup.bash" >> ~/.bashrc
+$ echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
 
 - **注意**: 上記コマンドの `>>` を `>` にしてしまうと元々あった .bashrc 内の設定が消えてしまうので気をつけてください．
@@ -91,8 +91,36 @@ $ echo "source /opt/ros/<$ROS_DISTRO>/setup.bash" >> ~/.bashrc
 .bashrc の設定ができていると以後のターミナルを起動するたびに行う
 `source /opt/ros/melodic/setup.bash` は不要です．
 
+ここで、今コマンドを入力した端末で以下のコマンドを入力します。
+環境変数にROSという文字列を含むもののみを表示させてみます。
+
+```
+$ env | grep ROS
+$
+```
+何も表示されません。今度は、新たに端末を立ち上げて、
+再度同じコマンドを入力して見ます。すると、
+今度はROS_で始まる環境変数が多数見つかるはずです。
+
+```
+$ env | grep ROS
+ROS_ETC_DIR=/opt/ros/melodic/etc/ros
+ROS_ROOT=/opt/ros/melodic/share/ros
+ : 中略
+ROS_DISTRO=melodic
+$
+```
+
+もし、新しく起動した端末で、ROS関係の環境変数が見つからない場合は、
+上記の設定、手順が間違っている可能性がありますので、
+まずは ~/.bashrc の最後の部分を確認して、再度設定を行ってください。
+
+
 
 次は、シミュレータを実際に起動してみます。
+
+
+
 
 [**次「NEDO ROSセットのシミュレータの利用」**](../rosset_simulator)
 

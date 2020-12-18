@@ -68,3 +68,31 @@ ROS/MoveIt! を利用する際衣には、端末 (gnome-terminal : コマンド�
 <div align="center">
 <img src="figs/term_bookmark_04.png" width="800"/>
 </div>
+
+## ROS環境設定
+
+ROSでは、ROS使用時に必要な環境設定が /opt/ros/melodic/setup.bash という
+ファイルに用意されていますので、これを読み込み，ROS の環境を設定します．
+
+```
+$ source /opt/ros/melodic/setup.bash
+```
+
+これは新しくターミナルを立ち上げて ROS を使用する前に毎回必要になります．
+下記のように .bashrc ファイルに設定を加えて
+ターミナル起動時に setup.bash を自動で実行し ROS 環境になるようにしておくと便利です．
+
+```
+$ echo "source /opt/ros/<$ROS_DISTRO>/setup.bash" >> ~/.bashrc
+```
+
+- **注意**: 上記コマンドの `>>` を `>` にしてしまうと元々あった .bashrc 内の設定が消えてしまうので気をつけてください．
+
+.bashrc の設定ができていると以後のターミナルを起動するたびに行う
+`source /opt/ros/melodic/setup.bash` は不要です．
+
+
+次は、シミュレータを実際に起動してみます。
+
+[**次「NEDO ROSセットのシミュレータの利用」**](../rosset_simulator)
+

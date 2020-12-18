@@ -27,7 +27,7 @@ NEDO ロボット活用型市場化適用技術開発プロジェクト (市場�
 
 ## 目次
 
-1. [ROSの基本](ros_basic)
-1. [NEDO ROSセットの起動方法](boot_rosset) 
-1. [NEDO ROSセットの基本設定](basic_settings)
+1. [NEDO ROSセット 基本設定](rosset_setting)
+1. [NEDO ROSセット シミュレータの利用](rosset_simulator)
+
 

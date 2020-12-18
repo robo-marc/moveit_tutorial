@@ -1,5 +1,21 @@
 # NEDO ROSセットのシミュレータの利用
 
+<!-- TOC -->
+
+- [NEDO ROSセットのシミュレータの利用](#nedo-rosセットのシミュレータの利用)
+    - [シミュレータの種類](#シミュレータの種類)
+    - [ソフトウェアのインストール](#ソフトウェアのインストール)
+            - [Gazebo シミュレータの起動](#gazebo-シミュレータの起動)
+            - [MoveIt! の起動](#moveit-の起動)
+            - [シミュレータの終了](#シミュレータの終了)
+        - [KHI duaro - Gazebo シミュレータ](#khi-duaro---gazebo-シミュレータ)
+            - [Gazebo シミュレータの起動](#gazebo-シミュレータの起動-1)
+            - [MoveIt! の起動](#moveit-の起動-1)
+            - [シミュレータの終了](#シミュレータの終了-1)
+        - [MoveIt! GUI での動作計画](#moveit-gui-での動作計画)
+
+<!-- /TOC -->
+
 シミュレータ上のロボットを動かしてみます．  
 本チュートリアルでは下記のロボットのシミュレータの利用方法を紹介します．
 
@@ -129,8 +145,6 @@ $ roslaunch khi_duaro_gazebo duaro_world.launch
 </div>
 <div style="text-align: center;">duAro - MoveIt! 起動画面</div>
 
-![duaro Simulator - Starts](images/kinetic/duaro-simulator_starts.png)
-
 しばらくすると次のようなメッセージが **ターミナル-1** に表示されます．
 
 ```
@@ -153,8 +167,10 @@ $ roslaunch khi_duaro_moveit_config demo.launch
 または
 $ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch
 ```
-
-![duaro MoveIt! - Starts](images/kinetic/duaro-moveit_starts.png)
+<div align="center">
+<img src="figs/duaro-moveit_starts.png"/>
+</div>
+<div style="text-align: center;">duAro - MoveIt! 起動画面</div>
 
 これで MoveIt! の動作計画機能が利用できる状態になっています．
 

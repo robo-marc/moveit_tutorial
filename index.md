@@ -32,7 +32,8 @@ NEDO ロボット活用型市場化適用技術開発プロジェクト (市場�
 1. [NEDO ROSセット シミュレータの利用](rosset_simulator)
 1. [MoveIt!プログラミングの基礎](program_basic)
 
-なお、このチュートリアル資料は、東京オープンソースロボティクス協会の [MoveIt! Tutorial Document]() を参考にしています。
+なお、このチュートリアル資料は、東京オープンソースロボティクス協会の [MoveIt! Tutorial Document]() を参考にしています。インストール方法や、より応用的な使い方などはこちらをご参照ください。
 
-- TORK [MoveIt! Tutorial Document]()
-- Github: 
+- TORK [MoveIt! Tutorial Document](https://github.com/robo-marc/moveit_tutorial/raw/main/tork_tutorial/tork_moveit_tutorial-melodic-0.0.10.pdf)
+- Github: [https://github.com/tork-a/tork_moveit_tutorial](https://github.com/tork-a/tork_moveit_tutorial)
+

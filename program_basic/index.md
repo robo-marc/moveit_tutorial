@@ -732,7 +732,7 @@ nextage_moveit_tutorial_poses.py で実行している内容は
 
 ### KHI duaro の場合
 
-<!-->
+<!--
 **ターミナル-1**
 ```
 $ source /opt/ros/melodic/setup.bash

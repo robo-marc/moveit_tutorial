@@ -756,6 +756,7 @@ $ cd catkin_ws/src
 $ catkin create pkg my_tutorial
 $ cd my_tutorial
 $ mkdir script
+$ cd script
 $ cat > duaro_moveit_tutorial_poses.py
 ここで、下の duaro_moveit_tutorial_poses.py をコピペ、Ctrl+Dで抜ける
 $ catkin build

@@ -183,11 +183,9 @@ ROSノード（群）を起動するツール．ROSは独自のビルド・パ�
   - Ex. contentという名前のパラメータ(string型) に “hogehoge” を代入
 
   
+
 <div style="text-align: center;">
-[◀最初に戻る](../)
-</div>
-<div style="text-align: center;">
-[◀前「トップ」](../rosset_simulator)・[次「NEDO ROSセットのシミュレータの利用」▶](../rosset_simulator)
+[◀前「トップ」](../rosset_simulator) ・ [次「NEDO ROSセットのシミュレータの利用」▶](../rosset_simulator)
 </div>
 
 

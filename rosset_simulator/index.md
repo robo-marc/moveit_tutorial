@@ -44,10 +44,10 @@ NEXTAGE OPEN の Gazebo シミュレータと MoveIt! の組み合わせを基�
 
 ## ソフトウェアのインストール
 
-NEDO ROSセットでは、必要なソフトウェアはすでにインストールされています。
-具体的なインストールの仕方は、Torkの
+NEDO ROSセットでは，必要なソフトウェアはすでにインストールされています．
+具体的なインストールの仕方は，Torkの
 [MoveIt! Tutorial](https://github.com/tork-a/tork_moveit_tutorial/releases/tag/0.0.10)
-を参照してください。
+を参照してください．
 
 <!--
 #### Gazebo シミュレータの起動
@@ -75,7 +75,7 @@ NEXTAGE OPEN ロボットの準備が完了しています．
 
 #### MoveIt! の起動
 
-もう一つ端末を起動して、次のコマンドを入力して MoveIt! を起動します．
+もう一つ端末を起動して，次のコマンドを入力して MoveIt! を起動します．
 
 **ターミナル-2** : MoveIt! の起動
 ```
@@ -90,27 +90,27 @@ $ roslaunch nextage_moveit_config moveit_planning_execution.launch
 
 これで MoveIt! の動作計画機能が利用できる状態になっています．
 
-ここで、roslaunch について、確認しておきます。roslaunchコマンドは、
+ここで，roslaunch について，確認しておきます．roslaunchコマンドは，
 
 ```
 $ roslaunch <パッケージ名> <launchファイル名>
 ```
 
-となっており、上では、
+となっており，上では，
 
 - パッケージ: nextage_moveit_config
 - launchファイル: moveit_planning_execution.launch
 
-が指定されています。これらの場所は、以下の通りです。
+が指定されています．これらの場所は，以下の通りです．
 
 ```
 $ rospack find nextage_moveit_config
 /opt/ros/melodic/share/nextage_moveit_config
 ```
-rospack は ROS のパッケージ関連の操作や情報を表示するコマンドです。
-つまり、このパッケージは /opt/ros/melodic/share/nextage_moveit_config に存在するということになります。
+rospack は ROS のパッケージ関連の操作や情報を表示するコマンドです．
+つまり，このパッケージは /opt/ros/melodic/share/nextage_moveit_config に存在するということになります．
 
-次に、rosls コマンドでこのパッケージの中身を見てみます。
+次に，rosls コマンドでこのパッケージの中身を見てみます．
 
 ```
 $ rosls nextage_moveit_config
@@ -119,8 +119,8 @@ $ rosls nextage_moveit_config/launch/moveit_planning*
 /opt/ros/melodic/share/nextage_moveit_config/moveit_planning_execution.launch
 ```
 
-このように、指定されたパッケージの中のファイルを見ることができます。
-この例では、moveit_planning_execution.launch ファイルが、/opt/ros/melodic/share/nextage_moveit_config/ の中にあることが確認できました。
+このように，指定されたパッケージの中のファイルを見ることができます．
+この例では，moveit_planning_execution.launch ファイルが，/opt/ros/melodic/share/nextage_moveit_config/ の中にあることが確認できました．
 
 #### シミュレータの終了
 

@@ -4,7 +4,6 @@
 
 - [MoveIt!プログラミングの基礎](#moveitプログラミングの基礎)
     - [プログラムを入力して実行する](#プログラムを入力して実行する)
-            - [NEXTAGE OPEN の場合](#nextage-open-の場合)
         - [特定の関節を動かす](#特定の関節を動かす)
         - [腕全体の関節を動かす](#腕全体の関節を動かす)
         - [手先の位置を指定して動かす](#手先の位置を指定して動かす)
@@ -14,7 +13,6 @@
         - [連続した指令をロボットに送る](#連続した指令をロボットに送る)
         - [四角形や円に沿ってエンドエフェクタを動かす](#四角形や円に沿ってエンドエフェクタを動かす)
     - [プログラムファイルを実行する](#プログラムファイルを実行する)
-        - [NEXTAGE OPEN の場合](#nextage-open-の場合-1)
         - [KHI duaro の場合](#khi-duaro-の場合)
         - [ROS や MoveIt! のメリット](#ros-や-moveit-のメリット)
 
@@ -25,22 +23,15 @@
 
 ## プログラムを入力して実行する
 
-1行もしくは数行ごとにプログラムを入力して実行し，各コマンドで何をしているのかを見てみます．
+1行もしくは数行ごとにプログラムを入力して実行し，
+各コマンドで何をしているのかを見てみます．
 
 シミュレータや MoveIt! を起動し，
 それらを起動したターミナルとは別に新たにターミナルを起動して
 ROS の環境設定と対話的にプログラミングを行えるように準備します．
 
-まず、[NEDO ROSセットのシミュレータの利用](../rosset_simulator) で行ったのと同じように、gazebo と MoveIt! を起動します．
-
-<!--
-#### NEXTAGE OPEN の場合
-
-「シミュレータと MoveIt! の起動」の
-「[NEXTAGE OPEN - hrpsys シミュレータ](moveit-tutorial_ja_robot-simulator.md#start-nextage-hrpsys-simulator)」もしくは
-「[NEXTAGE OPEN - Gazebo シミュレータ](moveit-tutorial_ja_robot-simulator.md#start-nextage-gazebo-simulator)」を参照して
-hrpsys か Gazebo のどちらか一方のシミュレータと MoveIt! を起動します．
--->
+まず，[NEDO ROSセットのシミュレータの利用](../rosset_simulator) で
+行ったのと同じように，gazebo と MoveIt! を起動します．
 
 次に1行もしくは複数行ごとにプログラミングとその実行を行う
 対話的プログラミングコンソールを起動します．
@@ -51,7 +42,6 @@ $ source /opt/ros/melodic/setup.bash
 $ rosrun tork_moveit_tutorial demo.py
 ```
 
-
 ### 特定の関節を動かす
 
 プログラムから関節を動かすなどをするために「右腕」の `group` を作成します．
@@ -60,15 +50,6 @@ $ rosrun tork_moveit_tutorial demo.py
 
 - 補足 : `In [1]:` の `[ ]` の中の数字はプログラム入力するたびに更新されます．本チュートリアルにある入力例にある数字と一致しない場合がありますがそれは問題ありませんので，そのままチュートリアルを進めてください．
 
-<!-- nextage
-```python
-In [1]: group = MoveGroupCommander("right_arm")
-[ INFO] [1511506815.441893962, 135.795000000]: TrajectoryExecution will use new action capability.
-[ INFO] [1511506815.442105792, 135.795000000]: Ready to take MoveGroup commands for group right_arm.
-
-In [2]:
-```
--->
 
 ```python
 In [1]: group = MoveGroupCommander("upper_arm")
@@ -78,44 +59,15 @@ In [1]: group = MoveGroupCommander("upper_arm")
 In [2]:
 ```
 
-<!-- nextage
 - 注意：以下のように`TrajectoryExecution will use old action capability.`と表示される場合も有りますが問題ありません．
-```python
-In [1]: group = MoveGroupCommander("right_arm")
-[ INFO] [1511506815.441893962, 135.795000000]: TrajectoryExecution will use old action capability.
-[ INFO] [1511506815.442105792, 135.795000000]: Ready to take MoveGroup commands for group right_arm.
-```
--->
 
-- 注意：以下のように`TrajectoryExecution will use old action capability.`と表示される場合も有りますが問題ありません．
 ```python
 In [1]: group = MoveGroupCommander("upper_arm")
 [ INFO] [1511506815.441893962, 135.795000000]: TrajectoryExecution will use old action capability.
 [ INFO] [1511506815.442105792, 135.795000000]: Ready to take MoveGroup commands for group right_arm.
 ```
-
-<!--
-- 注意 : MINAS TRA1 の場合はグループ名が異なります．
-```python
-In [4]: group = MoveGroupCommander("manipulator")
-```
--->
 
 グループ `group` に含まれる関節の名前を `get_joints()` で調べます．
-
-<!--
-```python
-In [2]: group.get_joints()
-['RARM_JOINT0',
- 'RARM_JOINT1',
- 'RARM_JOINT2',
- 'RARM_JOINT3',
- 'RARM_JOINT4',
- 'RARM_JOINT5']
-
-In [3]:
-```
--->
 
 ```python
 In [2]: group.get_joints()
@@ -124,36 +76,14 @@ Out[2]: ['upper_joint1', 'upper_joint2', 'upper_joint3', 'upper_joint4']
 In [3]:
 ```
 
-<!--
-上は NEXTAGE OPEN の右腕の場合の出力結果で
-`RARM_JOINT0`〜`RARM_JOINT5` の6つの関節があることがわかります．
--->
-
 上は duAro の右腕（根本軸が上側の腕）の場合の出力結果で
 `upper_joint1`〜`upper_joint4` の4つの関節があることがわかります．
 
-<!--
-肘関節に相当する `RARM_JOINT2` を動かしてみます．
--->
-
 根元の間接である `upper_joint1` を動かしてみます．
-
-<!--
-`set_joint_value_target()` を使って関節の目標値を設定します．
-`set_joint_value_target()` に関節名 `'RARM_JOINT2'` と
-関節角度を `-2.0`（単位ラジアン[rad]）を渡します．
--->
-
 
 `set_joint_value_target()` を使って関節の目標値を設定します．
 `set_joint_value_target()` に関節名 `'upper_joint1'` と
 関節角度を `1.0`（単位ラジアン[rad]）を渡します．
-
-<!--
-```python
-In [3]: group.set_joint_value_target( 'RARM_JOINT2', -2.0 )
-```
--->
 
 ```python
 In [3]: group.get_current_joint_values()
@@ -168,11 +98,6 @@ In [4]: group.set_joint_value_target( 'upper_joint1', 1.0 )
 In [5]: group.go()
 Out[5]: True
 ```
-
-<!--
-正常に動作が完了すると `True` が返ってきます．
-肘関節 `upper_joint1` が少し屈曲したと思います．
--->
 
 正常に動作が完了すると `True` が返ってきます．
 根本関節 `upper_joint1` が少し屈曲したと思います．
@@ -216,8 +141,7 @@ In [12]: group.go()
 Out[12]: True
 ```
 
-duAro の腕の姿勢が変化していることが確認できます。
-
+duAro の腕の姿勢が変化していることが確認できます．
 
 ### 手先の位置を指定して動かす
 
@@ -228,7 +152,6 @@ duAro の腕の姿勢が変化していることが確認できます。
 `set_position_target()` に渡します．
 
 位置座標の単位はメートル [m] です．
-<!--座標原点は NEXTAGE OPEN の場合，腰部リンク (`/WAIST`) にあります．-->
 各軸の方向は下記の右手座標系です．
 
 - X方向 : 正 = 前 / 負 = 後
@@ -278,8 +201,8 @@ Out[22]: True
 `set_rpy_target()` を使います．
 手先の目標姿勢の角度 ( roll, pitch, yaw ) をリスト `[ R, P, Y ]` で
 `set_rpy_target()` に渡します．
-ちなみに、duAroはスカラロボットなので、手先の姿勢のうち R, P は常に0.0です。
-0.0以外の値を与えると plan ができずにエラーとなります。 
+ちなみに，duAroはスカラロボットなので，手先の姿勢のうち R, P は常に0.0です．
+0.0以外の値を与えると plan ができずにエラーとなります． 
 
 ```python
 In [30]: rpy = [0.0, 0.0, -0.1]
@@ -329,7 +252,6 @@ In [41]: group.set_pose_target(posrpy)
 In [42]: group.go()
 Out[42]: True
 ```
-<!-- 0.0, 0.0, -0.04, 0.99 -->
 
 もう1つ位置・姿勢を指定して腕を動かしてみます．
 
@@ -339,7 +261,6 @@ In [44]: group.set_pose_target(posrpy)
 In [45]: group.go()
 Out[45]: True
 ```
-<!-- 0.0, 0.0, -0.06, 0.99 -->
 
 今度は 位置とクォータニオン を `set_pose_target()` に渡して腕を動かしてみます．
 
@@ -359,7 +280,7 @@ Out[52]: True
 -->
 
 次に `Pose` 型を `set_pose_target()` に渡して腕を動かしてみます．
-Pose型では、手先の姿勢はクォータニオンで与えます。
+Pose型では，手先の姿勢はクォータニオンで与えます．
 
 > - クォータニオン（四元数/しげんすう）
 >     - 空間上の姿勢を表現するための4つの成分をもつベクトル
@@ -455,15 +376,6 @@ In [69]: group.set_pose_target( p2 )
 In [70]: group.go()
 Out[70]: True
 ```
-
-<!--
-`set_pose_target()` に渡せるもう1つの型 `PoseStamped` 型については
-
-- 発展的なロボットプログラミング - より複雑なロボット動作計画 / 姿勢の参照座標を指定する
-
-にて説明します．
--->
-
 
 ### 直線補間軌道でロボットを動かす
 
@@ -566,7 +478,6 @@ In [83]: group.execute( plan )
 Out[83]: True
 ```
 
-
 ### 四角形や円に沿ってエンドエフェクタを動かす
 
 エンドエフェクタを四角形や円に沿って動かすような場合も
@@ -641,7 +552,6 @@ Out[95]: True
 In [96]: exit
 ```
 
-
 ## プログラムファイルを実行する
 
 コンソールでのプログラム実行は学習や各コマンドの動作確認には良いのですが，
@@ -649,122 +559,53 @@ In [96]: exit
 
 プログラムファイルを実行する前に物理シミュレータと MoveIt! を起動しておきます．
 
-
-### NEXTAGE OPEN の場合
-
-**ターミナル-1**
-```
-$ source /opt/ros/melodic/setup.bash
-$ roslaunch khi_duaro_gazebo duaro_world.launch
-```
-
-- メモ : hrpsys (RTM) シミュレータでも可
-
-**ターミナル-2**
-```
-$ source /opt/ros/melodic/setup.bash
-$ roslaunch khi_duaro_moveit_config demo.launch
-```
-
-動作プログラムファイルを実行します．
-
-**ターミナル-3**
-```
-$ source /opt/ros/melodic/setup.bash
-$ rosrun tork_moveit_tutorial nextage_moveit_tutorial_poses.py
-```
-
-**nextage_moveit_tutorial_poses.py**
-
-```python
-#!/usr/bin/env python
-
-from tork_moveit_tutorial import *
-
-
-if __name__ == '__main__':
-
-    init_node()
-
-    group = MoveGroupCommander("right_arm")
-
-    # Pose Target 1
-    rospy.loginfo( "Start Pose Target 1")
-    pose_target_1 = Pose()
-
-    pose_target_1.position.x = 0.4
-    pose_target_1.position.y = -0.4
-    pose_target_1.position.z = 0.15
-    pose_target_1.orientation.x = 0.0
-    pose_target_1.orientation.y = -0.707
-    pose_target_1.orientation.z = 0.0
-    pose_target_1.orientation.w = 0.707
-
-    rospy.loginfo( "Set Target to Pose:\n{}".format( pose_target_1 ) )
-    group.set_pose_target( pose_target_1 )
-    group.go()
-
-    # Pose Target 2
-    rospy.loginfo( "Start Pose Target 2")
-    pose_target_2 = Pose()
-
-    pose_target_2.position.x = 0.3
-    pose_target_2.position.y = -0.3
-    pose_target_2.position.z = 0.5
-    pose_target_2.orientation.y = -1.0
-
-    rospy.loginfo( "Set Target to Pose:\n{}".format( pose_target_2 ) )
-    group.set_pose_target( pose_target_2 )
-    group.go()
-
-```
-
-nextage_moveit_tutorial_poses.py で実行している内容は
-
-- **手先の位置と姿勢を指定して動かす** - `set_pose_target()` `go()`
-
-と基本的に同じです．
-主に異なるのは下記の部分です．
-
-- `print()` を ROS のログに出力する `rospy.loginfo()` に変更
-- `rospy.loginfo()` の表示内容もどの箇所の実行ログかわかるように変更
-
-
 ### KHI duaro の場合
 
-<!--
+MoveIt!を起動していなければ，以下のコマンドで再度起動します．
 **ターミナル-1**
 ```
-$ source /opt/ros/melodic/setup.bash
-$ roslaunch khi_duaro_gazebo duaro_world.launch
-```
--->
-
-**ターミナル-1**
-```
-$ source /opt/ros/melodic/setup.bash
 $ roslaunch khi_duaro_moveit_config demo.launch
 ```
 <!-- $ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch -->
 
 動作プログラムファイルを実行します．
+ここでは，作成するスクリプトを自作のパッケージ **my_tutorial** として
+作成しそこに配置する例を示します．
+
+まず，catkin create pkg で作成します．
 
 **ターミナル-2**
 ```
 $ mkdir -p ~/catkin_ws
 $ cd catkin_ws/src
 $ catkin create pkg my_tutorial
+```
+
+続いて，my_tutorialディレクトリに入り，スクリプトを作成します．
+作成したスクリプトには chmod 755 で実行権限を付与しておきます．
+
+**ターミナル-2 (続き)**
+```
 $ cd my_tutorial
 $ mkdir script
 $ cd script
 $ cat > duaro_moveit_tutorial_poses.py
-ここで、下の duaro_moveit_tutorial_poses.py をコピペ、Ctrl+Dで抜ける
+ここで，下の duaro_moveit_tutorial_poses.py をコピペ，Ctrl+Dで抜ける
 $ chmod 755 duaro_moveit_tutorial_poses.py
+```
+
+最後に catkin build でワークスペースをビルドし，ワークスペースの
+設定 setup.bash を source で読み込んだ上で，rosrunで my_tutorial
+パッケージのスクリプトを起動します．
+
+**ターミナル-2 (続き)**
+```
 $ catkin build
 $ source ~/catkin_ws/devel/setup.bash
 $ rosrun my_tutorial duaro_moveit_tutorial_poses.py
 または
 $ rosrun tork_moveit_tutorial duaro_moveit_tutorial_poses.py
+(同じスクリプトは以下のパッケージ内にすでにいストール済み)
 ```
 
 **duaro_moveit_tutorial_poses.py**
@@ -815,8 +656,7 @@ if __name__ == '__main__':
 
 ```
 
-このプログラムを書き換えて、いろいろ試してみましょう。
-
+このプログラムを書き換えて，いろいろ試してみましょう．
 
 他のロボットの動作計画・動作の実行ファイルとの相違点は次のとおりです．
 
@@ -825,12 +665,12 @@ if __name__ == '__main__':
 
 ### ROS や MoveIt! のメリット
 
-KHI duAro を例にとり、ロボット制御をプログラムから行う方法に
-ついて見てきましたが、動作計画・動作プログラムにおいて、
-ほかのロボットとの相違点はほとんどありません。
-ロボットが代わった場合に変更すべき部分は、下記の2ヶ所程度であり、
-ロボットが変わっても、プログラム方法はほとんど変わらないので、
-様々なメーカーのロボットをこれらの知識で制御することができます。
+KHI duAro を例にとり，ロボット制御をプログラムから行う方法に
+ついて見てきましたが，動作計画・動作プログラムにおいて，
+ほかのロボットとの相違点はほとんどありません．
+ロボットが代わった場合に変更すべき部分は，下記の2ヶ所程度であり，
+ロボットが変わっても，プログラム方法はほとんど変わらないので，
+様々なメーカーのロボットをこれらの知識で制御することができます．
 
 - group = MoveGroupCommander() に渡すグループ名を各ロボットアームに対応したものにする
 - ターゲットポーズの位置・姿勢を各ロボットの機構に適したものにする

@@ -213,5 +213,10 @@ MoveIt! が動作計画を行い，シミュレータのロボットが動作し
 InteractiveMarker を動かして目標値を設定し，動作計画を行い実行する
 という操作は基本的にどのロボットでも共通です．
 
+<div style="text-align: center;">
+    <a href="../rosset_setting"><strong>◀[前]「NEDO ROSセット基本設定」</strong></a>
+    ・
+    <a href="../program_basic"><strong>「MoveIt!プログラミングの基礎」[次]▶</strong></a>
+</div>
 
 <!-- EOF -->

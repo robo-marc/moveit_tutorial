@@ -124,12 +124,13 @@ $
 上記の設定，手順が間違っている可能性がありますので，
 まずは ~/.bashrc の最後の部分を確認して，再度設定を行ってください．
 
-
-
 次は，シミュレータを実際に起動してみます．
 
+<div style="text-align: center;">
+    <a href="../ros_overview"><strong>◀[前]「ROS概要」</strong></a>
+    ・
+    <a href="../rosset_simulator"><strong>「NEDO ROSセットのシミュレータの利用」[次]▶</strong></a>
+</div>
 
 
-
-[**次「NEDO ROSセットのシミュレータの利用」**](../rosset_simulator)
-
+<!-- EOF -->

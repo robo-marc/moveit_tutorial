@@ -679,5 +679,9 @@ KHI duAro を例にとり，ロボット制御をプログラムから行う方�
 ROS や MoveIt! のインタフェースを使用する最大のメリットの1つであるといえます．
 
 
-
+<div style="text-align: center;">
+    <a href="../rosset_simulator"><strong>◀[前]「NEDO ROSセットのシミュレータの利用」</strong></a>
+    ・
+    <a href="../"><strong>「トップに戻る」[次]▶</strong></a>
+</div>
 <!-- EOF -->

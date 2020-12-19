@@ -340,18 +340,18 @@ In [45]: group.go()
 Out[45]: True
 ```
 <!-- 0.0, 0.0, -0.06, 0.99 -->
-<!-->
+
 今度は 位置とクォータニオン を `set_pose_target()` に渡して腕を動かしてみます．
 
 ```python
-In [46]: xyzw = [0.0, 0.0, -0.04, 0.99]
+In [46]: xyzw = [-0.3, 0.2, 1.0, 0.0, 0.0, -0.04, 0.99]
 In [47]: group.set_pose_target(xyzw)
 In [48]: group.go()
 Out[49]: True
 ```
 
 ```python
-In [50]: xyzw = [0.0, 0.0, -0.06, 0.99]
+In [50]: xyzw = [-0.1, 0.5, 1.1, 0.0, 0.0, -0.06, 0.99]
 In [51]: group.set_pose_target(xyzw)
 In [52]: group.go()
 Out[52]: True

@@ -185,7 +185,9 @@ ROSノード（群）を起動するツール．ROSは独自のビルド・パ�
   
 
 <div style="text-align: center;">
-[◀前「トップ」](../rosset_simulator) ・ [次「NEDO ROSセットのシミュレータの利用」▶](../rosset_simulator)
+[**◀前「トップ」**](../rosset_simulator)
+・
+[**次「NEDO ROSセットのシミュレータの利用」▶**](../rosset_simulator)
 </div>
 
 

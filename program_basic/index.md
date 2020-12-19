@@ -759,6 +759,7 @@ $ mkdir script
 $ cd script
 $ cat > duaro_moveit_tutorial_poses.py
 ここで、下の duaro_moveit_tutorial_poses.py をコピペ、Ctrl+Dで抜ける
+$ chmod 755 duaro_moveit_tutorial_poses.py
 $ catkin build
 $ source ~/catkin_ws/devel/setup.bash
 $ rosrun my_tutorial duaro_moveit_tutorial_poses.py

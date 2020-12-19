@@ -182,14 +182,8 @@ ROSノード（群）を起動するツール．ROSは独自のビルド・パ�
   - コード内であらかじめ定義されているパラメータを起動時に指定する
   - Ex. contentという名前のパラメータ(string型) に “hogehoge” を代入
 
-  
-
+ 
 <div style="text-align: center;">
-[**前「トップ」**](../rosset_simulator)
-・
-[**次「NEDO ROSセットのシミュレータの利用」**](../rosset_simulator)
+    <a href="../rosset_simulator>**◀前「トップ」**</a>・<a href="../rosset_simulator">**次「NEDO ROSセットのシミュレータの利用」▶**</a>
 </div>
 
-[**前「トップ」**](../rosset_simulator)
-
-[**次「NEDO ROSセットのシミュレータの利用」**](../rosset_simulator)

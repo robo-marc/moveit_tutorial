@@ -2,20 +2,19 @@
 
 <!-- TOC -->
 
-- [MoveIt!プログラミングの基礎](#moveitプログラミングの基礎)
-  - [プログラムを入力して実行する](#プログラムを入力して実行する)
-    - [myCobot の場合](#mycobot-の場合)
-      - [実機を動かす場合](#実機を動かす場合)
-      - [腕全体の関節を動かす](#腕全体の関節を動かす)
-      - [手先の位置を指定して動かす](#手先の位置を指定して動かす)
-      - [手先の姿勢を指定して動かす](#手先の姿勢を指定して動かす)
-      - [手先の位置と姿勢を指定して動かす](#手先の位置と姿勢を指定して動かす)
-      - [直線補間軌道でロボットを動かす](#直線補間軌道でロボットを動かす)
-      - [連続した指令をロボットに送る](#連続した指令をロボットに送る)
-      - [四角形や円に沿ってエンドエフェクタを動かす](#四角形や円に沿ってエンドエフェクタを動かす)
-  - [プログラムファイルを実行する](#プログラムファイルを実行する)
-    - [myCobot の場合](#mycobot-の場合-1)
-    - [ROS や MoveIt! のメリット](#ros-や-moveit-のメリット)
+- [1. プログラムを入力して実行する](#1-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%82%92%E5%85%A5%E5%8A%9B%E3%81%97%E3%81%A6%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B)
+    - [1.1. myCobot の場合](#11-mycobot-%E3%81%AE%E5%A0%B4%E5%90%88)
+        - [1.1.1. 実機を動かす場合](#111-%E5%AE%9F%E6%A9%9F%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E5%A0%B4%E5%90%88)
+        - [1.1.2. 腕全体の関節を動かす](#112-%E8%85%95%E5%85%A8%E4%BD%93%E3%81%AE%E9%96%A2%E7%AF%80%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99)
+        - [1.1.3. 手先の位置を指定して動かす](#113-%E6%89%8B%E5%85%88%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E5%8B%95%E3%81%8B%E3%81%99)
+        - [1.1.4. 手先の姿勢を指定して動かす](#114-%E6%89%8B%E5%85%88%E3%81%AE%E5%A7%BF%E5%8B%A2%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E5%8B%95%E3%81%8B%E3%81%99)
+        - [1.1.5. 手先の位置と姿勢を指定して動かす](#115-%E6%89%8B%E5%85%88%E3%81%AE%E4%BD%8D%E7%BD%AE%E3%81%A8%E5%A7%BF%E5%8B%A2%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E5%8B%95%E3%81%8B%E3%81%99)
+        - [1. 直線補間軌道でロボットを動かす](#1-%E7%9B%B4%E7%B7%9A%E8%A3%9C%E9%96%93%E8%BB%8C%E9%81%93%E3%81%A7%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99)
+        - [2. 連続した指令をロボットに送る](#2-%E9%80%A3%E7%B6%9A%E3%81%97%E3%81%9F%E6%8C%87%E4%BB%A4%E3%82%92%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E3%81%AB%E9%80%81%E3%82%8B)
+        - [3. 四角形や円に沿ってエンドエフェクタを動かす](#3-%E5%9B%9B%E8%A7%92%E5%BD%A2%E3%82%84%E5%86%86%E3%81%AB%E6%B2%BF%E3%81%A3%E3%81%A6%E3%82%A8%E3%83%B3%E3%83%89%E3%82%A8%E3%83%95%E3%82%A7%E3%82%AF%E3%82%BF%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99)
+- [2. プログラムファイルを実行する](#2-%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B)
+    - [2.1. myCobot の場合](#21-mycobot-%E3%81%AE%E5%A0%B4%E5%90%88)
+    - [2.2. ROS や MoveIt! のメリット](#22-ros-%E3%82%84-moveit-%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88)
 
 <!-- /TOC -->
 
@@ -585,7 +584,7 @@ roslaunch tork_moveit_tutorial demo.launch mode:=real
 **ターミナル-3** : 対話的プログラミングのコンソールの起動
 
 ```bash
-source /opt/ros/<$ROS_DISTRO>/setup.bash
+source ~/catkin_ws/devel/setup.bash
 rosrun tork_moveit_tutorial demo.py
 
 #### 特定の関節を動かす
@@ -1219,7 +1218,7 @@ if __name__ == '__main__':
 ### myCobot の場合
 
 **ターミナル-1**
-```
+```bash
 $ source ~/catkin_ws/devel/setup.bash
 $ roslaunch tork_moveit_tutorial demo.launch
 ```
@@ -1227,8 +1226,8 @@ $ roslaunch tork_moveit_tutorial demo.launch
 動作プログラムファイルを実行します．
 
 **ターミナル-2**
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
+```bash
+$ source ~/catkin_ws/devel/setup.bash
 $ rosrun tork_moveit_tutorial mycobot_moveit_tutorial_poses.py
 ```
 
@@ -1254,8 +1253,8 @@ $ roslaunch tork_moveit_tutorial demo.launch mode:=real
 ```
 
 **ターミナル-3**
-```
-$ source /opt/ros/<$ROS_DISTRO>/setup.bash
+```bash
+$ source ~/catkin_ws/devel/setup.bash
 $ rosrun tork_moveit_tutorial mycobot_moveit_tutorial_poses.py
 ```
 

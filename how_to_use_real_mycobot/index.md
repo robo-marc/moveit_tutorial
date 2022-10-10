@@ -1,5 +1,18 @@
-
 # 実機の使い方 - myCobot の場合
+
+<!-- TOC -->
+
+- [1. <a href="#start-mycobot-moveit-real-robot">myCobot280 の場合 </a>](#1-a-hrefstart-mycobot-moveit-real-robotmycobot280-%E3%81%AE%E5%A0%B4%E5%90%88-a)
+    - [1.1. myCobot280 の固定](#11-mycobot280-%E3%81%AE%E5%9B%BA%E5%AE%9A)
+    - [1.2. myCobot280 のファームウェア更新](#12-mycobot280-%E3%81%AE%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%E3%82%A6%E3%82%A7%E3%82%A2%E6%9B%B4%E6%96%B0)
+        - [1.2.1. myStudio のダウンロード](#121-mystudio-%E3%81%AE%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89)
+        - [1.2.2. USB ドライバのインストール](#122-usb-%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+        - [1.2.3. ファームウェアの更新](#123-%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E6%9B%B4%E6%96%B0)
+    - [1.3. myCobot280 を Transponder モードにする](#13-mycobot280-%E3%82%92-transponder-%E3%83%A2%E3%83%BC%E3%83%89%E3%81%AB%E3%81%99%E3%82%8B)
+    - [1.4. dialout グループへのユーザ追加](#14-dialout-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%B8%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E8%BF%BD%E5%8A%A0)
+    - [1.5. pymycobot Python API のインストール](#15-pymycobot-python-api-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+
+<!-- /TOC -->
 
 実機と MoveIt! を使って
 プログラムからロボットを操作する際の
@@ -7,9 +20,9 @@
 
 <a id="start-mycobot-moveit-real-robot"></a>
 
-## <a href="#start-mycobot-moveit-real-robot">myCobot280 の場合 </a>
+## 1. <a href="#start-mycobot-moveit-real-robot">myCobot280 の場合 </a>
 
-### myCobot280 の固定
+### 1.1. myCobot280 の固定
 
 myCobot280がぐらつかないように，固定をしてください．
 
@@ -21,9 +34,9 @@ myCobot280がぐらつかないように，固定をしてください．
 
 - [Flat Stand](https://docs.elephantrobotics.com/docs/gitbook-en/2-serialproduct/2.7-accessories/2.7.1-fsta.html)や[Gベース](https://docs.elephantrobotics.com/docs/gitbook-en/2-serialproduct/2.7-accessories/2.7.1-fsta.html)のような固定用ベース部品を利用することもできます．
 
-### myCobot280 のファームウェア更新
+### 1.2. myCobot280 のファームウェア更新
 
-#### myStudio のダウンロード
+#### 1.2.1. myStudio のダウンロード
 
 Windows PCが必要です．
 
@@ -33,7 +46,7 @@ Windows PCが必要です．
 
 ![myCobot - MyStudio startup screen](figs/mycobot-mystudio-startup-screen.png)
 
-#### USB ドライバのインストール
+#### 1.2.2. USB ドライバのインストール
 
 Windows/VMware上のUbuntuからmyCobotを制御する場合、Windows側のドライバーをインストールしない場合VMwareからうまく認識されない場合がありますので、以下のUSBドライバをインストールしておいた方が良いでしょう。
 
@@ -42,7 +55,7 @@ Windows/VMware上のUbuntuからmyCobotを制御する場合、Windows側のド�
 CP210x Windows Drivers をダウンロードしてください。
 ZIPファイルを展開して、CP210xVCPInstaller_x64.exe を実行します。
 
-#### ファームウェアの更新
+#### 1.2.3. ファームウェアの更新
 
 アーム先端の M5Stack Atom と胴体の M5Stack Basic のファームウェアを更新します．
 
@@ -93,14 +106,14 @@ Recording to Ram/Flash? と聞かれるので，Ram を選択してください�
 
 同様に，Play で教えた動作を再生します．
 
-### myCobot280 を Transponder モードにする
+### 1.3. myCobot280 を Transponder モードにする
 
 以降，パソコンから myCobot に指令を送る際には，
 myCobot の画面 (miniroboFlow) から Transponder を選択してください．
 
 ![myCobot - Transponder mode](figs/mycobot-transponder-mode.png)
 
-### dialout グループへのユーザ追加
+### 1.4. dialout グループへのユーザ追加
 
 シリアルポートにアクセス権を持つ，
 dialoutグループにユーザを追加します．
@@ -111,7 +124,7 @@ dialoutグループにユーザを追加します．
 sudo adduser $USER dialout 
 ```
 
-### pymycobot (Python API) のインストール
+### 1.5. pymycobot (Python API) のインストール
 
 myCobot を Python で動かすための API をインストールします．
 

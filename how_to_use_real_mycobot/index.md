@@ -35,9 +35,12 @@ Windows PCが必要です．
 
 #### USB ドライバのインストール
 
+Windows/VMware上のUbuntuからmyCobotを制御する場合、Windows側のドライバーをインストールしない場合VMwareからうまく認識されない場合がありますので、以下のUSBドライバをインストールしておいた方が良いでしょう。
+
 [SILICON LABS CP210x USB - UART ブリッジ VCP ドライバ](https://jp.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 にアクセスし，
-CP210x VCP Windows をダウンロードしてください．
+CP210x Windows Drivers をダウンロードしてください。
+ZIPファイルを展開して、CP210xVCPInstaller_x64.exe を実行します。
 
 #### ファームウェアの更新
 

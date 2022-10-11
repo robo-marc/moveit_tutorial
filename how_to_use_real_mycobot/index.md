@@ -9,8 +9,9 @@
         - [1.2.2. USB ドライバのインストール](#122-usb-%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
         - [1.2.3. ファームウェアの更新](#123-%E3%83%95%E3%82%A1%E3%83%BC%E3%83%A0%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E6%9B%B4%E6%96%B0)
     - [1.3. myCobot280 を Transponder モードにする](#13-mycobot280-%E3%82%92-transponder-%E3%83%A2%E3%83%BC%E3%83%89%E3%81%AB%E3%81%99%E3%82%8B)
-    - [1.4. dialout グループへのユーザ追加](#14-dialout-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%B8%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E8%BF%BD%E5%8A%A0)
-    - [1.5. pymycobot Python API のインストール](#15-pymycobot-python-api-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
+    - [1.4. Ubuntu に myCobot を接続する](#14-ubuntu-%E3%81%AB-mycobot-%E3%82%92%E6%8E%A5%E7%B6%9A%E3%81%99%E3%82%8B)
+    - [1.5. dialout グループへのユーザ追加](#15-dialout-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%B8%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B6%E8%BF%BD%E5%8A%A0)
+    - [1.6. pymycobot Python API のインストール](#16-pymycobot-python-api-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
 
 <!-- /TOC -->
 
@@ -113,10 +114,43 @@ myCobot の画面 (miniroboFlow) から Transponder を選択してください�
 
 ![myCobot - Transponder mode](figs/mycobot-transponder-mode.png)
 
+### 1.5. Ubuntu に myCobot を接続する
+
+VMware上でUbuntu/ROSを動作させている場合、myCobot を Ubuntuに 繋ぎかえる必要があります。
+以下の図のように、左側のメニューから **[取り外し可能デバイス(R)]→[Sillicon CP2104 USB to UART Bridge Controller]→[接続(ホストから切断)]** を選びます。
+
+![VMware の Ubuntu に myCobot を接続する](figs/vmware_uart.png)
+
+Ubuntu側のターミナルで **dmesg** コマンドを打つと、以下のように接続した myCobot がどのデバイスに割り当てられたのかを確認します。以下の例では ttyUSB0 というデバイス名であることがわかります。
+
+```bash
+$ dmesg
+ : 略
+[11395.512212] cp210x ttyUSBO: cp210x converter now disconnected from ttyUSBO
+[11395.512477] c210x 2-2.1:1.0: device disconnected
+[11627.130359] usb 2-2.1: new full-speed USB device number 8 using uhci_hed
+[11627.385716] usb 2-2.1: New USB device found, idVendor=10c4, idProduct=ea60, bedDevice= 1.00
+[11627.385718] usb 2-2.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[11627.385718] usb 2-2.1: Product: CP2104 USB to UART Bridge Controller
+[11627.385719] usb 2-2.1: Manufacturer: Silicon Labs
+[11627.3857201 usb 2-2.1: SerialNumber: 0243F1AF
+[11627.390106] c210x 2-2.1:1.0: cp210x converter detected
+[11627.396964] usb 2-2.1: cp210 converter now attached to ttyUSBO
+tork@tork:~$
+```
+
+myCobotのデバイス名は ttyUSB? と ttyACM? のような2種類あります。 デバイスファイルの場所は以下のようになります。
+
+- /dev/ttyUSB0
+- /dev/ttyAMC0
+
+デバイス名の最後の0は、これらのデバイスが複数接続された場合は 0, 1, 2, ... のように自動で割り当てられます。
+
 ### 1.4. dialout グループへのユーザ追加
 
 シリアルポートにアクセス権を持つ，
 dialoutグループにユーザを追加します．
+NEDO ROSイメージの場合は、すでにこの設定が行われている場合があります。
 
 **ターミナル**
 
@@ -141,24 +175,47 @@ In [1]: from pymycobot.mycobot import MyCobot
 In [2]: mycobot=MyCobot('/dev/ttyUSB0')
 ```
 
+ここで、myCobot が ttyACM デバイスに割り当てられている場合は、
+
+```python
+In [1]: from pymycobot.mycobot import MyCobot
+In [2]: mycobot=MyCobot('/dev/ttyACM0')
+```
+
+のようにします。
+では、myCobotの手先のLEDの色を変更してみます。
+
 ```python
 In [3]: mycobot.set_color(0,0,255)
 ```
 
+LEDは以下のように青色になったと思います。
+
 ![myCobot - pymycobot API: mycobot.set_color(0,0,255)](figs/mycobot-pymycobot-api-setcolor-0-0-255.png)
+
+
+次は、以下のように少し変えてみます。
 
 ```python
 In [4]: mycobot.set_color(0,255,255)
 ```
 
+LEDが以下のように青緑色になったと思います。
+
 ![myCobot - pymycobot API: mycobot.set_color(255,0,255)](figs/mycobot-pymycobot-api-setcolor-0-255-255.png)
+
+次に、アームを初期姿勢にしてみます。全ての関節角度に0[rad]を渡してみます。
 
 ```python
 In [5]: from pymycobot.genre import Angle
 In [6]: mycobot.send_angles([0,0,0,0,0,0], 80)
 ```
 
+以下のように、アームが直立した初期姿勢になったと思います。
+
 ![myCobot - pymycobot API: mycobot.send_angles([0,0,0,0,0,0], 80)](figs/mycobot-pymycobot-api-send-angles-to-reset-pose.png)
+
+以上が問題なく動作すれば、Ubuntu と myCobot が問題なく接続され、pymycobot モジュールも正常にインストールされていることになります。
 
 <div style="text-align: center;">
     <a href="../rosset_simulator"><strong>◀[前]「NEDO ROSセットのシミュレータの利用」</strong></a>

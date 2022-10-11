@@ -21,7 +21,7 @@
 物理シミュレータと MoveIt! を使って
 プログラムからロボットを操作します．
 
-## プログラムを入力して実行する
+## 1. プログラムを入力して実行する
 
 1行もしくは数行ごとにプログラムを入力して実行し，
 各コマンドで何をしているのかを見てみます．
@@ -558,9 +558,9 @@ In [96]: exit
 
 -->
 
-### myCobot の場合
+### 1.1. myCobot の場合
 
-#### 実機を動かす場合
+#### 1.1.1. 実機を動かす場合
 
 先に「[実機の使い方 - myCobot の場合](../how_to_use_real_mycobot)」を参照してください．
 
@@ -672,7 +672,7 @@ Out[10]: True
 
 ![myCobot - result of group.set_joint_value_target( 'joint6', 0.78 )](figs/3.1_In_[9]_set_joint_value_target.png)
 
-#### 腕全体の関節を動かす
+#### 1.1.2. 腕全体の関節を動かす
 
 `set_joint_value_target()` は1つの関節だけでなく
 腕全体の関節角度目標値のリストを渡すことで複数の関節を同時に動かすこともできます．
@@ -689,7 +689,7 @@ Out[12]: True
 
 myCobot ロボットは初期姿勢に戻っていることと思います．
 
-#### 手先の位置を指定して動かす
+#### 1.1.3. 手先の位置を指定して動かす
 
 手先（エンドエフェクタリンク）の位置を指定して腕を動かしてみます．
 
@@ -721,7 +721,7 @@ Out[22]: True
 
 ![myCobot - one result of group.set_position_target( [ 0.1, -0.1, 0.1 ] )](figs/3.1_In_[21]_set_position_target.png)
 
-#### 手先の姿勢を指定して動かす
+#### 1.1.4. 手先の姿勢を指定して動かす
 
 手先の姿勢を指定してロボットを動かしてみます．
 
@@ -751,7 +751,7 @@ Out[32]: True
 [ INFO] [1515668193.145149146, 166.319999999]: ABORTED: Solution found but controller failed during execution
 ```
 
-#### 手先の位置と姿勢を指定して動かす
+#### 1.1.5. 手先の位置と姿勢を指定して動かす
 
 手先の位置と姿勢を同時に指定して腕を動かすことができます．
 
@@ -769,7 +769,7 @@ Out[32]: True
 
 [https://github.com/ros-planning/moveit/blob/1.0.2/moveit_commander/src/moveit_commander/move_group.py#L252][6cf69e4b]
 
-  [6cf69e4b]: https://github.com/ros-planning/moveit/blob/1.0.2/moveit_commander/src/moveit_commander/move_group.py#L252 "set_pose_target()"
+ [6cf69e4b]b]: https://github.com/ros-planning/moveit/blob/1.0.2/moveit_commander/src/moveit_commander/move_group.py#L252 "set_pose_target()"
 
 それでは右手先の位置と姿勢を指定して腕を動かしてみます．
 まずは 位置とRPY角 を `set_pose_target()` に渡して動作させます．
@@ -914,7 +914,7 @@ Out[70]: True
 
 にて説明します．
 
-#### 直線補間軌道でロボットを動かす
+#### 1. 直線補間軌道でロボットを動かす
 
 `group.plan()` や `group.go()` を用いた動作計画では動作開始姿勢と目標姿勢の間の動作は
 各関節の開始角度と目標角度の間を補間した動作として計画されます．
@@ -939,7 +939,7 @@ Out[70]: True
 
 を通して学習します．
 
-#### 連続した指令をロボットに送る
+#### 2. 連続した指令をロボットに送る
 
 ロボットの複数の異なる姿勢を指示して動作計画と実行を行います．
 
@@ -1018,7 +1018,7 @@ Out[6]: True
 
 ![myCobot - result of group.compute_cartesian_path( waypoints_mycobot, 0.01, 0.0) (3)](figs/3.1_waypoints_mycobot_3.jpg) ![myCobot - result of group.compute_cartesian_path( waypoints_mycobot, 0.01, 0.0) (4)](figs/3.1_waypoints_mycobot_4.jpg)
 
-#### 四角形や円に沿ってエンドエフェクタを動かす
+#### 3. 四角形や円に沿ってエンドエフェクタを動かす
 
 エンドエフェクタを四角形や円に沿って動かすような場合も
 複数の異なる姿勢を指示して動作計画と実行を行います．
@@ -1102,7 +1102,7 @@ Out[14]: True
 In [15]: exit
 ```
 
-## プログラムファイルを実行する
+## 2. プログラムファイルを実行する
 
 コンソールでのプログラム実行は学習や各コマンドの動作確認には良いのですが，
 毎回同じことを入力して実行するのは大変なので命令が書かれたプログラムファイルを実行します．
@@ -1215,7 +1215,7 @@ if __name__ == '__main__':
 
 -->
 
-### myCobot の場合
+### 2.1. myCobot の場合
 
 **ターミナル-1**
 ```bash
@@ -1337,7 +1337,7 @@ if __name__ == '__main__':
 
 ![myCobot MoveIt! - cartesian path (real robot 1)](figs/mycobot-moveit_cartesian_path-real-robot-1.jpg) ![myCobot MoveIt! - cartesian path (real robot 2)](figs/mycobot-moveit_cartesian_path-real-robot-2.jpg)
 
-### ROS や MoveIt! のメリット
+### 2.2. ROS や MoveIt! のメリット
 
 KHI duAro を例にとり，ロボット制御をプログラムから行う方法に
 ついて見てきましたが，動作計画・動作プログラムにおいて，

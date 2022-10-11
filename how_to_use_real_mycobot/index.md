@@ -53,8 +53,8 @@ Windows/VMware上のUbuntuからmyCobotを制御する場合、Windows側のド�
 
 [SILICON LABS CP210x USB - UART ブリッジ VCP ドライバ](https://jp.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 にアクセスし，
-CP210x Windows Drivers をダウンロードしてください。
-ZIPファイルを展開して、CP210xVCPInstaller_x64.exe を実行します。
+**CP210x Windows Drivers** をダウンロードしてください。
+ZIPファイルを展開して、**CP210xVCPInstaller_x64.exe** を実行します。
 
 #### 1.2.3. ファームウェアの更新
 

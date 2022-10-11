@@ -121,7 +121,7 @@ VMware上でUbuntu/ROSを動作させている場合、myCobot を Ubuntuに 繋
 
 ![VMware の Ubuntu に myCobot を接続する](figs/vmware_uart.png)
 
-Ubuntu側のターミナルで **dmesg** コマンドを打つと、以下のように接続した myCobot がどのデバイスに割り当てられたのかを確認します。以下の例では ttyUSB0 というデバイス名であることがわかります。
+Ubuntu側のターミナルで **dmesg** コマンドを打つと、以下のように接続した myCobot がどのデバイスに割り当てられたのかが確認できます。以下の例では ttyUSB0 というデバイス名であることがわかります。
 
 ```bash
 $ dmesg

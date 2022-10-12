@@ -124,7 +124,7 @@ VMware上でUbuntu/ROSを動作させている場合、myCobot を Ubuntuに 繋
 Ubuntu側のターミナルで **dmesg** コマンドを打つと、以下のように接続した myCobot がどのデバイスに割り当てられたのかが確認できます。以下の例では ttyUSB0 というデバイス名であることがわかります。
 
 ```bash
-$ dmesg
+tork@tork:~$ dmesg
  : 略
 [11395.512212] cp210x ttyUSBO: cp210x converter now disconnected from ttyUSBO
 [11395.512477] c210x 2-2.1:1.0: device disconnected

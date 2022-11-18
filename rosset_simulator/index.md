@@ -5,9 +5,9 @@
 - [NEDO ROSセットのシミュレータの利用](#nedo-rosセットのシミュレータの利用)
   - [シミュレータの種類](#シミュレータの種類)
   - [ソフトウェアのインストール](#ソフトウェアのインストール)
-    - [KHI duaro - Gazebo シミュレータ](#khi-duaro---gazebo-シミュレータ)
-      - [Gazebo シミュレータの起動](#gazebo-シミュレータの起動)
-      - [MoveIt! の起動](#moveit-の起動)
+    - [myCobot - MoveIt! シミュレータ](#mycobot---moveit-シミュレータ)
+      - [myCobot ソフトウェアのインストール](#mycobot-ソフトウェアのインストール)
+      - [MoveIt! シミュレータ](#moveit-シミュレータ)
       - [シミュレータの終了](#シミュレータの終了)
     - [MoveIt! GUI での動作計画](#moveit-gui-での動作計画)
 
@@ -16,20 +16,21 @@
 シミュレータ上のロボットを動かしてみます．  
 本チュートリアルでは下記のロボットのシミュレータの利用方法を紹介します．
 
-- NEXTAGE OPEN : 人型双腕ロボット
-- KHI duAro : 双腕ロボット
+- myCobot : 短腕ロボット
 
 ## シミュレータの種類
 
 本チュートリアルで扱うシミュレータには次のような種類があります．
 
 - ROS のシミュレータ
-  - NEXTAGE OPEN / Baxter Research Robot / MINAS TRA1 / KHI duaro
+  - myCobot
+    - MoveIt! シミュレータ : 運動学のみの動作計画シミュレータ
+
+<!--
+  - KHI duaro
     - MoveIt! シミュレータ : 運動学のみの動作計画シミュレータ
     - Gazebo シミュレータ : 動力学を含む環境・物理シミュレータ
-- hrpsys(RTM) シミュレータ
-  - NEXTAGE OPEN のみ
-    - 動力学を含む物理シミュレータ
+-->
 
 本チュートリアルではどのシミュレータを使っても最終的には
 動作計画ソフトウェアの MoveIt! を起動してその動作計画機能を利用します．
@@ -37,7 +38,6 @@
 また，本チュートリアルの構成として，
 NEXTAGE OPEN の Gazebo シミュレータと MoveIt! の組み合わせを基本として
 各ロボットへの応用を展開する形を採っています．
-
 
 ## ソフトウェアのインストール
 
@@ -125,7 +125,9 @@ $ rosls nextage_moveit_config/launch/moveit_planning*
 
 -->
 
-### KHI duaro - Gazebo シミュレータ
+
+<!--
+### KHI duaro - Gazebo シミュレータ / MoveIt! シミュレータ
 
 #### Gazebo シミュレータの起動
 
@@ -177,8 +179,33 @@ $ roslaunch khi_duaro_moveit_config moveit_planning_execution.launch
 シミュレータでの作業が終わりましたら
 全てのターミナルで Ctrl-C を入力することでシミュレータを終了します．
 
-<$endif>
+-->
 
+### myCobot - MoveIt! シミュレータ
+
+#### myCobot ソフトウェアのインストール
+
+myCobotの利用にはソフトウェアのインストールが必要です。
+
+#### MoveIt! シミュレータ
+
+ターミナルで次のコマンドを実行して myCobot 280 用 MoveIt! を起動します．
+
+**ターミナル-1** : myCobot 280 用の MoveIt! の起動
+
+```bash
+source ~/catkin_ws/devel/setup.bash
+roslaunch tork_moveit_tutorial demo.launch
+```
+
+![myCobot MoveIt! - Starts](images/melodic/mycobot-moveit_starts.png)
+
+これで MoveIt! の動作計画機能が利用できる状態になっています．
+
+#### シミュレータの終了
+
+シミュレータでの作業が終わりましたら
+全てのターミナルで Ctrl-C を入力することでシミュレータを終了します．
 
 ### MoveIt! GUI での動作計画
 
@@ -202,7 +229,7 @@ MoveIt! が動作計画を行い，シミュレータのロボットが動作し
 動作計画だけを行いたい場合は `Plan` ボタンをクリックします．
 
 <div align="center">
-<img src="figs/duaro_moveit_plan-execute.png"/>
+<img src="figs/mycobot_moveit_plan-execute.png"/>
 </div>
 <div style="text-align: center;">duAro - MoveIt! Plan/Execute</div>
 
@@ -213,7 +240,7 @@ InteractiveMarker を動かして目標値を設定し，動作計画を行い�
 <div style="text-align: center;">
     <a href="../rosset_setting"><strong>◀[前]「NEDO ROSセット基本設定」</strong></a>
     ・
-    <a href="../program_basic"><strong>「MoveIt!プログラミングの基礎」[次]▶</strong></a>
+    <a href="../how_to_use_real_mycobot"><strong>「実機の使い方 - myCobot の場合」[次]▶</strong></a>
 </div>
 
 <!-- EOF -->

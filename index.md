@@ -30,6 +30,7 @@ NEDO ロボット活用型市場化適用技術開発プロジェクト (市場�
 <!-- 1. [ROSの基本](ros_basic) -->
 1. [NEDO ROSセット 基本設定](rosset_setting)
 1. [NEDO ROSセット シミュレータの利用](rosset_simulator)
+1. [実機の使い方 - myCobotの場合](how_to_use_real_mycobot)
 1. [MoveIt!プログラミングの基礎](program_basic)
 
 なお，このチュートリアル資料は，東京オープンソースロボティクス協会の [MoveIt! Tutorial Document]() を参考にしています．インストール方法や，より応用的な使い方などはこちらをご参照ください．

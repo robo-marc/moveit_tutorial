@@ -43,7 +43,7 @@ NEXTAGE OPEN の Gazebo シミュレータと MoveIt! の組み合わせを基�
 
 NEDO ROSセットでは，必要なソフトウェアはすでにインストールされています．
 具体的なインストールの仕方は，Torkの
-[MoveIt! Tutorial](https://github.com/tork-a/tork_moveit_tutorial/releases/tag/0.0.10)
+[MoveIt! Tutorial](https://github.com/tork-a/tork_moveit_tutorial/releases/tag/0.1.1)
 を参照してください．
 
 <!--

@@ -575,7 +575,7 @@ In [96]: exit
 myCobotのデバイス名が /dev/ttyUSB0 以外の場合 (例: /dev/ttyUSB1や/dev/ACM0等) の場合は、launch ファイルを書き換える必要があります。
 
 ```bash
-$ gedit ~/catkin_ws_src_tork_moveit_tutorial/launch/mycobot_interface.launch
+$ gedit ~/catkin_ws/src/tork_moveit_tutorial/launch/mycobot_interface.launch
 ```
 として、エディタでlaunchファイルを編集します。
 
